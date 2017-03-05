@@ -9,7 +9,12 @@ namespace Softdrink{
 
 		[SerializeField]
 		[MultilineAttribute(3)]
-		[TooltipAttribute("Supplemental Text to include on newlines after the version Number. \nUseful for specific information about the current build.")]
+		[TooltipAttribute("Supplemental Text to include before the version Number. \nUseful for specific information about the current build.")]
+		string prependText = "";
+
+		[SerializeField]
+		[MultilineAttribute(3)]
+		[TooltipAttribute("Supplemental Text to include after the version Number. \nUseful for specific information about the current build.")]
 		string appendText = "";
 
 		// Internal reference to the attached UI Text component
@@ -35,9 +40,10 @@ namespace Softdrink{
 		// Set the display content that is fed to the text component
 		private string displayContent = "";
 		void SetContent(){
-			if(appendText != ""){
-				displayContent = VersionNumber.nf();
-				displayContent += "\n";
+			displayContent = "";
+			if(appendText != "" || prependText != ""){
+				displayContent += prependText;
+				displayContent += VersionNumber.nf();
 				displayContent += appendText;
 			}else{
 				displayContent = VersionNumber.nf();
