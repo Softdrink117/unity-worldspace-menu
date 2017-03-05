@@ -60,10 +60,10 @@ namespace Softdrink{
 			formatted += majorNumber;
 			formatted += ".";
 
-			formatted += minorNumber;
+			formatted += minorNumber.ToString("D2");
 			formatted += ".";
 
-			formatted += buildNumber;
+			formatted += buildNumber.ToString("D3");
 
 			formatted += suffix;
 
